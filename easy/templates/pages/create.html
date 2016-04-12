@@ -1,0 +1,94 @@
+{% extends "teachers_base.html" %}
+{% block content %}
+<div class="row-fluid">
+    <!-- block -->
+    <div class="block">
+        <div class="navbar navbar-inner block-header">
+            <div class="muted pull-left">Test Panel</div>
+        </div>
+        <div class="block-content collapse in">
+            <div class="span12">
+                <form class="form-horizontal" name="create" action="{% url 'create'%}" method="post"
+                      enctype="multipart/form-data"  role="form">
+                    {% csrf_token %}
+                    <fieldset>
+                        <legend>Test Details</legend>
+                        <input type="hidden" name="school" value="{{school.school_name}}" />
+
+                        <div class="control-group">
+                            <label class="control-label" for="typeahead">Test </label>
+                            <div class="controls">
+                                <input type="text" class="span6" id="typeahead"  data-provide="typeahead" data-items="4"
+                                       name = "name">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="subject"> Subject </label>
+                            <div class="controls">
+                                <select id="subject" class="chzn-select" name="subject">
+                                    {% for subject in subjects%}
+                                        <option >{{subject}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="streams">Stream</label>
+                            <div class="controls">
+                                <select multiple="multiple" name="streams" id="streams" class="chzn-select span4">
+                                    {% for stream in streams%}
+                                        <option value="{{subject}}">{{stream}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="date01">Date input</label>
+                            <div class="controls">
+                                <input type="text" class="input-xlarge datepicker" id="date01" value="02/16/12">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="file">Questions</label>
+                            <div class="controls">
+                                <input class="input-file uniform_on" id="file" name="file" type="file">
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Upload details</button>
+                            <button type="reset" class="btn">Cancel</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <!-- block -->
+    <div class="block">
+        <div class="navbar navbar-inner block-header">
+            <div class="muted pull-left">Downloads</div>
+        </div>
+        <div class="block-content collapse in">
+            <div class="span12">
+                <form class="form-horizontal" name="download_excel" action="{% url 'excel_file'%}" method="get" role="form">
+                    <fieldset>
+                        <legend>Download sample excel file</legend>
+                    </fieldset>
+                    <div class="well" style="margin-top:30px;">
+                        <button type="submit" class="btn btn-large btn-block btn-primary">Download file</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

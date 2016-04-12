@@ -1,0 +1,117 @@
+{% load staticfiles%}
+    <link rel = "stylesheet" href  = "{% static 'website/css/bootstrap.min.css'%}"/>
+    <link rel = "stylesheet" href  = "{% static 'website/css/font-awesome.css'%}"/>
+    <link rel = "stylesheet" href  = "{% static 'website/css/animate.css'%}"/>
+    <link rel = "stylesheet" href  = "{% static 'website/css/templatemo_misc.css'%}"/>
+    <link rel = "stylesheet" href  = "{% static 'website/css/templatemo_style.css'%}"/>
+    
+    <!--<script>window.jQuery || document.write('<script src="..js/vendor/jquery-1.11.0.min.js"><\/script>')</script>-->
+    <script>window.jQuery || document.write('<script src="{% static 'website/js/main.js'%}"><\/script>')</script>
+    <script src = "{% static 'website/js/vendor/modernizr-2.6.1-respond-1.1.0.min.js'%}"></script>
+    <script src = "{% static 'website/js/vendor/jquery-1.11.0.min.js'%}"></script>
+    <script src = "{% static 'website/js/bootstrap.js'%}"></script>
+    <script src = "{% static 'website/js/plugins.js'%}"></script>
+    <script src = "{% static 'website/js/main.js'%}"></script>
+    
+    
+        
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <title>Oceanline Tours and Travels</title>
+        <meta name="description" content="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+        <![endif]-->
+
+        <div class="site-header">
+            <div class="container">
+                <div class="main-header">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6 col-xs-10">
+                            <div class="logo">
+                                <a href="#">
+                                    <img src="/static/website//images/logo.png" alt="Oceanline Company Logo" title="Oceanline Tours  logo">
+                                </a>
+                            </div> <!-- /.logo -->
+                        </div> <!-- /.col-md-4 -->
+                        <div class="col-md-8 col-sm-6 col-xs-2">
+                            <div class="main-menu">
+                                <ul class="visible-lg visible-md">
+                                    <li class="active"><a href="index.html">Home</a></li>
+                                    <li><a href="services.html">Services</a></li>
+                                    <li><a href="events.html">Events</a></li>
+                                    <li><a href="about.html">About Us</a></li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                </ul>
+                                <a href="#" class="toggle-menu visible-sm visible-xs">
+                                    <i class="fa fa-bars"></i>
+                                </a>
+                            </div> <!-- /.main-menu -->
+                        </div> <!-- /.col-md-8 -->
+                    </div> <!-- /.row -->
+                </div> <!-- /.main-header -->
+                <div class="row">
+                    <div class="col-md-12 visible-sm visible-xs">
+                        <div class="menu-responsive">
+                            <ul>
+                                <li class="active"><a href="index.html">Home</a></li>
+                                <li><a href="services.html">Services</a></li>
+                                <li><a href="events.html">Events</a></li>
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </div> <!-- /.menu-responsive -->
+                    </div> <!-- /.col-md-12 -->
+                </div> <!-- /.row -->
+            </div> <!-- /.container -->
+        </div> <!-- /.site-header -->
+        
+        {% block content %}{% endblock %}    		
+        
+        <div class="site-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        <div class="footer-logo">
+                            <a href="index.html">
+                                <img src="images/logo.png" alt="">
+                            </a>
+                        </div>
+                    </div> <!-- /.col-md-4 -->
+                    <div class="col-md-4 col-sm-4">
+                        <div class="copyright">
+                            <span>
+                            	
+                                Copyright &copy; 2016 <a href="#">Oceanline Tours and Travel</a>
+                            
+                            
+                            <!--
+                            | Design: <a rel="nofollow" href="http://www.templatemo.com" target="_parent">templatemo</a>
+                            -->
+                            
+                            </span>
+                        </div>
+                    </div> <!-- /.col-md-4 -->
+                    <div class="col-md-4 col-sm-4">
+                        <ul class="social-icons">
+                            <li><a href="#" class="fa fa-facebook"></a></li>
+                            <li><a href="#" class="fa fa-twitter"></a></li>
+                            <li><a href="#" class="fa fa-linkedin"></a></li>
+                            <li><a href="#" class="fa fa-flickr"></a></li>
+                            <li><a href="#" class="fa fa-rss"></a></li>
+                        </ul>
+                    </div> <!-- /.col-md-4 -->
+                </div> <!-- /.row -->
+            </div> <!-- /.container -->
+        </div> <!-- /.site-footer -->
+
+        <!-- templatemo 409 travel -->  
+    </body>
+</html>

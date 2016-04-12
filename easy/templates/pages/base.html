@@ -1,0 +1,175 @@
+
+{% load staticfiles %}
+<!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'teacher/bootstrap/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'teacher/bootstrap/css/bootstrap-responsive.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'teacher/vendors/easypiechart/jquery.easy-pie-chart.css' %}" />
+    <link rel="stylesheet" href="{% static 'teacher/assets/styles.css' %}" />
+
+<!---JavaScripts -->
+    <script src="{% static 'teacher/vendors/jquery-1.9.1.min.js'%}"></script>
+    <script src="{% static 'teacher/bootstrap/js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'teacher/vendors/easypiechart/jquery.easy-pie-chart.js'%}"></script>
+    <script src="{% static 'teacher/assets/scripts.js'%}"></script>
+
+<!DOCTYPE html>
+<html class="no-js">
+    
+    <head>
+        <title>EasySchool Home Page</title>
+
+        <!--<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+        <link href="vendors/easypiechart/jquery.easy-pie-chart.css" rel="stylesheet" media="screen">
+        <link href="assets/styles.css" rel="stylesheet" media="screen">-->
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <script src="vendors/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    </head>
+    
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="#">Teacher's Panel</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right">
+                            <li class="dropdown">
+                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-user"></i> {{full_name}} <i class="caret"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a tabindex="-1" href="login.html">Logout</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="nav">
+                            <li class="active">
+                                <a href=".">Dashboard</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span3" id="sidebar">
+                    <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
+                        {%if not page%}
+                        <li class="active">
+                            <a href="dashboard1.html"><i class="icon-chevron-right"></i> Dashboard</a>
+                        </li>
+                        {%endif%}
+                        {%if page == "calender"%}
+                            <li class="active">
+                        {%else%}
+                        <li>
+                        {%endif%}
+                            <a href="calendar.html"><i class="icon-chevron-right"></i> Calendar</a>
+                        </li>
+                        {%if page == "statistics"%}
+                            <li class="active">
+                        {%else%}
+                        <li>
+                        {%endif%}
+                            <a href="stats.html"><i class="icon-chevron-right"></i> Class 1 East Statistics</a>
+                        </li>
+                        {%if page == "create"%}
+                            <li class="active">
+                        {%else%}
+                        <li>
+                        {%endif%}
+                            <a href="create.html"><i class="icon-chevron-right"></i>Create Test or Exams </a>
+                        </li>
+                        {%if page == "messages"%}
+                            <li class="active">
+                        {%else%}
+                        <li>
+                        {%endif%}
+                            <a href="message.html"><i class="icon-chevron-right"></i>Message Panel</a>
+                        </li>
+                        {%if page == "manage"%}
+                            <li class="active">
+                        {%else%}
+                        <li>
+                        {%endif%}
+                            <a href="manage.html"><i class="icon-chevron-right"></i>Manage Students</a>
+                        </li>
+                        {%if page == "tests"%}
+                            <li class="active">
+                        {%else%}
+                        <li>
+                        {%endif%}
+                            <a href="tests.html"><span class="badge badge-info pull-right">731</span> View tests and exam</a>
+                        </li>
+                        {%if page == "students"%}
+                            <li class="active">
+                        {%else%}
+                        <li>
+                        {%endif%}
+                            <a href="students.html"><span class="badge badge-info pull-right">812</span> Students</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!--/span-->
+                <div class="span9" id="content">
+                    <div class="row-fluid">
+                        <div class="alert alert-success">
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <h4>Success</h4>
+                        	The operation completed successfully
+                        </div>
+                        	<div class="navbar">
+                            	<div class="navbar-inner">
+	                                <ul class="breadcrumb">
+	                                    <i class="icon-chevron-left hide-sidebar"><a href='#' title="Hide Sidebar" rel='tooltip'>&nbsp;</a></i>
+	                                    <i class="icon-chevron-right show-sidebar" style="display:none;"><a href='#' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>
+	                                    {%if page%}
+                                            <li>
+                                                <a href="{% url 'teacher'%}">Dashboard</a> <span class="divider">/</span>
+                                            </li>
+                                            <li class="active">page</li>
+                                        {%else%}
+                                            <li class="active">Dashboard</li>
+                                        {% endif %}
+	                                </ul>
+                            	</div>
+                        	</div>
+                    	</div>
+                    {% block content %}{% endblock %}
+                    </div>
+
+                </div>
+
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <hr>
+                </div>
+                <footer>
+                    <p>&copy;EasySchool {{year}}</p>
+                </footer>
+            </div>
+
+        </div>
+        <!--/.fluid-container-->
+        <script>
+        $(function() {
+            // Easy pie charts
+            $('.chart').easyPieChart({animate: 1000});
+        });
+        </script>
+    </body>
+
+</html>

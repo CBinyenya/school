@@ -1,0 +1,68 @@
+{% extends "teachers_base.html" %}
+{% block content %}
+<div class="row-fluid">
+    <!-- block -->
+    <div class="block">
+        <div class="navbar navbar-inner block-header">
+            <div class="muted pull-left">Students Panel</div>
+        </div>
+        <div class="block-content collapse in">
+            <div class="span12">
+                <form class="form-horizontal" name="create" action="." method="post"
+                      enctype="multipart/form-data"  role="form">
+                    {% csrf_token %}
+                    <fieldset>
+                        <legend>Class Details</legend>
+                        <input type="hidden" name="school" value="{{school.school_name}}" />
+                        {%if error%}
+                        <p style="color:red">{{error}}</p>
+                        {% endif %}
+                        <div class="control-group">
+                            <label class="control-label" for="stream"> Stream </label>
+                            <div class="controls">
+                                <input type="text" class="span6" id="stream"  data-provide="typeahead" data-items="4"
+                                       data-source="{{streams}}" name = "stream">
+                            </div>
+                        </div>
+
+
+                        <div class="control-group">
+                            <label class="control-label" for="file">Students File</label>
+                            <div class="controls">
+                                <input class="input-file uniform_on" id="file" name="file" type="file">
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Upload details</button>
+                            <button type="reset" class="btn">Cancel</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <!-- block -->
+    <div class="block">
+        <div class="navbar navbar-inner block-header">
+            <div class="muted pull-left">Downloads</div>
+        </div>
+        <div class="block-content collapse in">
+            <div class="span12">
+                <form class="form-horizontal" name="download_excel" action="{% url 'excel_file'%}" method="get" role="form">
+                    <fieldset>
+                        <legend>Download class sample excel file</legend>
+                    </fieldset>
+                    <div class="well" style="margin-top:30px;">
+                        <button type="submit" class="btn btn-large btn-block btn-primary">Download file</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,164 @@
+{% load staticfiles%}
+<!----------------CSS Files------------->
+    <!--<link rel = "stylesheet" href  = "{% static 'http://fonts.googleapis.com/css?family=Roboto:400,100,300,500'%}"/>-->
+    <link rel = "stylesheet" href  = "{% static 'units/bootstrap/css/bootstrap.min.css'%}"/>
+    <link rel = "stylesheet" href  = "{% static 'units/font-awesome/css/font-awesome.min.css'%}"/>
+    <link rel = "stylesheet" href  = "{% static 'units/css/style.css'%}"/>
+
+
+<!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="{% static 'favicon.ico'%}"/>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>EasySchool</title>
+
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
+
+    </head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand topnav" href=".">Home Page</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="{% url 'home'%}">Home</a>
+                    </li>
+                    <li>
+                        <a href="#"> E-learning </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout'%}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+	
+	<div class="row" style="margin-top:30px;"></div>
+    <div class="content-section-a">
+	
+        <div class="container top-details">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">{{info}}</h2>
+					
+                </div>
+            </div>
+			<div class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-10">
+				<table class="table">
+					<tr class="success">
+						<td width="43%"><span class="ident_info_school">NAME :</span><span class="info_stud">{{fullname}}</span></td>
+						<td><span class="ident_info_depart">CLASS :</span><span class="info_stud">{{stream}}</span></td>
+					</tr>
+
+				</table>
+				</div>
+			</div>
+			
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+   
+   
+   <div class="content-section-a">
+        <div class="container">
+            <div class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-10">
+
+                <form name="units_form" method="get" action="test" role="form">
+
+                    <!--{% csrf_token %}-->
+                    {%if tests%}
+                    <table class="table table-striped">
+                        {%for test in tests%}
+                            <tr>
+                                <td>
+                                    <span class="unit_code">Subject Name:</span>
+                                    <span id="unit_code">{{test.exam_subject}}</span><br/>
+                                    <span class="unit_name">Task Specification:</span>
+                                    <span id="unit_name">{{test.exam_name}}</span>
+                                </td>
+                                <td>
+                                    <a href="{% url 'test'%}">
+                                        <button type="submit" name="test_code" class="btn btn-success btn-sm" value="{{test.exam_name}}">Take Test</button>
+                                    </a>
+                                 </td>
+                            </tr>
+                        {%endfor%}
+                    </table>
+                    {%endif%}
+
+                </form>
+				</div>
+			</div>
+		</div>
+   </div>
+	
+        <div class="row" style="margin-bottom:80px;"></div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ul class="list-inline">
+                            <li>
+                                <a href=".">Home</a>
+                            </li>
+                            <li class="footer-menu-divider">&sdot;</li>
+                            <li>
+                                <a href="#">Elearning</a>
+                            </li>
+                            <li class="footer-menu-divider">&sdot;</li>
+                            <li>
+                                <a href="#">Student Portal</a>
+                            </li>
+                            <li class="footer-menu-divider">&sdot;</li>
+                            <li>
+                                <a href="{% url 'logout'%}">Logout</a>
+                            </li>
+                        </ul>
+                        <p class="copyright text-muted small">Copyright &copy; {{year}} EasySchool. All Rights Reserved</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+    </body>
+
+</html>

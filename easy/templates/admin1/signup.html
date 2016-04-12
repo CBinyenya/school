@@ -1,0 +1,60 @@
+{% load staticfiles %}
+    <!--Bootstrap Core Css -->
+    <link rel = "stylesheet" href  = "{% static 'admin1/signup_css/style.css'%}"/>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign Up Form</title>
+        <link rel="stylesheet" href="css/normalize.css">
+        <link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    {% block content %}
+    <body>
+    <form role="form" action="{% url 'signup'%}" method="post">
+        {% csrf_token %}
+        <h1>Sign Up</h1>
+        <fieldset>
+            {% if errors %}
+            <label style="color:red">
+                <p>{{errors}}</p>
+            </label>
+            {% endif %}
+            <legend><span class="number">1</span>Your basic info</legend>
+            <label for="username">Username: <span style="color:red;">*</span></label>
+            <input type="text" id="username" name="username">
+
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email">
+
+              <label for="phone">Phone:</label>
+              <input type="text" id="phone" name="phone">
+
+              <label for="id_password1">Password: <span style="color:red;">*</span></label>
+              <input type="password" id="id_password1" name="password1">
+
+            <label for="id_password2">Confirm Password: <span style="color:red;">*</span></label>
+              <input type="password" id="id_password2" name="password2">
+
+
+              <label>Create account for:</label>
+              <input type="radio" id="teacher" value="teacher" name="user_account">
+              <label for="teacher" class="light">Teacher</label><br>
+              <input type="radio" id="student" value="student" name="user_account">
+              <label for="student" class="light">Student</label><br>
+              <input type="radio" id="parent" value="parent" name="user_account">
+              <label for="parent" class="light">Parent</label><br>
+              <input type="radio" id="t_and_p" value="both" name="user_account">
+              <label for="t_and_p" class="light">Teacher and Parent</label>
+
+              <input type="submit" class="button" value="Next" />
+
+
+        </fieldset>
+    </form>
+    </body>
+{% endblock %}
+</html>

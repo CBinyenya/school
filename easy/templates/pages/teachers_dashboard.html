@@ -1,0 +1,28 @@
+{%extends "teachers_base.html"%}
+{%block content%}
+{%for subject in subjects%}
+    <div class="row-fluid">
+        <!-- block -->
+        <div class="block">
+            <div class="navbar navbar-inner block-header">
+                <div class="muted pull-left">{{subject.class_level}} {{subject.subject_name}} average performance</div>
+                <div class="pull-right">
+                    <a href="#"><span class="badge badge-warning">View More</span></a>
+                </div>
+            </div>
+            <div class="block-content collapse in">
+                {%for result in results%}
+                {%if result.subject == subject%}
+                <div class="span3">
+                    <div class="chart" data-percent="{{result.average}}">{{result.average}}</div>
+                    <div class="chart-bottom-heading">
+                        <span class="label label-info">{{result.name}}</span>
+                    </div>
+                </div>
+                {%endif%}
+            {%endfor%}
+            </div>
+        </div>
+    </div>
+{%endfor%}
+{% endblock %}

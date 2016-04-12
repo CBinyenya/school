@@ -1,0 +1,314 @@
+
+{% load staticfiles %}
+<!-- Bootstrap -->
+    <link rel="stylesheet" media="screen" href="{% static 'teacher/bootstrap/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" media="screen" href="{% static 'teacher/bootstrap/css/bootstrap-responsive.min.css' %}" />
+    <link rel="stylesheet" media="screen" href="{% static 'teacher/vendors/easypiechart/jquery.easy-pie-chart.css' %}" />
+    <link rel="stylesheet" media="screen" href="{% static 'teacher/vendors/datepicker.css' %}" />
+    <link rel="stylesheet" media="screen" href="{% static 'teacher/assets/styles.css' %}" />
+    <link rel="stylesheet" media="screen" href="{% static 'teacher/assets/DT_bootstrap.css' %}" />
+<!--Calender Css-->
+    <link rel="stylesheet" media="screen" href="{% static 'teacher/vendors/fullcalendar/fullcalendar.css' %}" />
+
+
+
+
+<!---JavaScripts -->
+    <script src="{% static 'teacher/vendors/jquery-1.9.1.js'%}"></script>
+    <!--<script src="{% static 'teacher/vendors/jquery-1.9.1.min.js'%}"></script>-->
+    <script src="{% static 'teacher/bootstrap/js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'teacher/vendors/easypiechart/jquery.easy-pie-chart.js'%}"></script>
+    <script src="{% static 'teacher/assets/scripts.js'%}"></script>
+    <script src="{% static 'teacher/vendors/wizard/jquery.bootstrap.wizard.min.js'%}"></script>
+    <script src="{% static 'teacher/vendors/datatables/js/jquery.dataTables.min.js'%}"></script>
+    <script src="{% static 'teacher/assets/DT_bootstrap.js'%}"></script>
+<!--Datepicker JS-->
+    <script src="{% static 'teacher/vendors/bootstrap-datepicker.js'%}"></script>
+
+{%block header%}
+{%endblock%}
+
+<!DOCTYPE html>
+<html class="no-js">
+    
+    <head>
+
+        <title>EasySchool Home Page</title>
+
+        <!--<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+        <link href="vendors/easypiechart/jquery.easy-pie-chart.css" rel="stylesheet" media="screen">
+        <link href="assets/styles.css" rel="stylesheet" media="screen">-->
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <script src="vendors/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    </head>
+    
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="{% url 'teacher' teacher.id%}">Teacher's Panel</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right">
+                            <li class="dropdown">
+                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-user"></i> {{full_name}} <i class="caret"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a tabindex="-1" href="/easy/profile/{{teacher.id}}">Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'logout'%}" tabindex="-1" >Logout</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="nav">
+                            <li class="active">
+                                <a href=".">Dashboard</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span3" id="sidebar">
+                    <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
+                        {%if not page%}
+                        <li class="active">
+                        {%else%}
+                            <li>
+                        {%endif%}
+                        <a href="{% url 'teacher' teacher.id%}"><i class="icon-chevron-right"></i> Dashboard</a>
+                        </li>
+
+                        {%if page == "statistics"%}
+                            <li class="active">
+                        {%else%}
+                        <li>
+                        {%endif%}
+                            <a href="{% url 'statistics'%}"><i class="icon-chevron-right"></i> Statistics</a>
+                        </li>
+                        {%if page == "create"%}
+                            <li class="active">
+                        {%else%}
+                        <li>
+                        {%endif%}
+                            <a href="{% url 'create'%}"><i class="icon-chevron-right"></i>Create Test or Exams </a>
+                        </li>
+                        {%if page == "messages"%}
+                            <li class="active">
+                        {%else%}
+                        <li>
+                        {%endif%}
+                            <a href="{% url 'message'%}"><i class="icon-chevron-right"></i>Message Panel</a>
+                        </li>
+                        {%if classteacher%}
+                            {%if page == "manage"%}
+                                <li class="active">
+                            {%else%}
+                            <li>
+                            {%endif%}
+                                <a href="{% url 'manage'%}"><i class="icon-chevron-right"></i>Manage Students</a>
+                            </li>
+                        {%endif%}
+                        {%if page == "tests"%}
+                            <li class="active">
+                        {%else%}
+                        <li>
+                        {%endif%}
+                            <a href="{% url 'tests'%}"><span class="badge badge-info pull-right">{{num_of_tests}}</span> View tests and exam</a>
+                        </li>
+                        {%if page == "students"%}
+                            <li class="active">
+                        {%else%}
+                        <li>
+                        {%endif%}
+                            <a href="{% url 'students'%}"><span class="badge badge-info pull-right">{{num_of_students}}</span> Students</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!--/span-->
+                <div class="span9" id="content">
+                    <div class="row-fluid">
+                        {% if message%}
+                        <div class="alert alert-success alert-block">
+                            <a class="close" data-dismiss="alert" href="#">&times;</a>
+                            <h4 class="alert-heading">Success!</h4>
+                            {{message}}
+                        </div>
+                        {% elif error%}
+                        <div class="alert alert-error alert-block">
+                            <a class="close" data-dismiss="alert" href="#">&times;</a>
+                            <h4 class="alert-heading">Error!</h4>
+                            {{error}}
+                        </div>
+                        {%endif%}
+                        	<div class="navbar">
+                            	<div class="navbar-inner">
+	                                <ul class="breadcrumb">
+	                                    <i class="icon-chevron-left hide-sidebar"><a href='#' title="Hide Sidebar" rel='tooltip'>&nbsp;</a></i>
+	                                    <i class="icon-chevron-right show-sidebar" style="display:none;"><a href='#' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>
+	                                    {%if page%}
+                                            <li>
+                                                <a href="{% url 'teacher' teacher.id%}">Dashboard</a> <span class="divider">/</span>
+                                            </li>
+                                            <li class="active">{{page}}</li>
+                                        {%else%}
+                                            <li class="active">Dashboard</li>
+                                        {% endif %}
+	                                </ul>
+                            	</div>
+                        	</div>
+                    	</div>
+                    {% block content %}{% endblock %}
+                    </div>
+                </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <hr>
+                </div>
+                <footer>
+                    <p>&copy; EasySchool {{year}}</p>
+                </footer>
+            </div>
+
+        </div>
+
+        <script>
+        $(function() {
+            // Easy pie charts
+            $('.chart').easyPieChart({animate: 1000});
+        });
+        </script>
+            <script>
+
+	jQuery(document).ready(function() {
+	   FormValidation.init();
+	});
+
+
+        $(function() {
+            $(".datepicker").datepicker();
+            $(".uniform_on").uniform();
+            $(".chzn-select").chosen();
+            $('.textarea').wysihtml5();
+
+            $('#rootwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
+                var $total = navigation.find('li').length;
+                var $current = index+1;
+                var $percent = ($current/$total) * 100;
+                $('#rootwizard').find('.bar').css({width:$percent+'%'});
+                // If it's the last tab then hide the last button and show the finish instead
+                if($current >= $total) {
+                    $('#rootwizard').find('.pager .next').hide();
+                    $('#rootwizard').find('.pager .finish').show();
+                    $('#rootwizard').find('.pager .finish').removeClass('disabled');
+                } else {
+                    $('#rootwizard').find('.pager .next').show();
+                    $('#rootwizard').find('.pager .finish').hide();
+                }
+            }});
+            $('#rootwizard .finish').click(function() {
+                alert('Finished!, Starting over!');
+                $('#rootwizard').find("a[href*='tab1']").trigger('click');
+            });
+        });
+        </script>
+    <script>
+        $(function() {
+            // Easy pie charts
+            var calendar = $('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next',
+				center: 'title',
+				right: 'month,basicWeek,basicDay'
+			},
+            selectable: true,
+            selectHelper: true,
+            select: function(start, end, allDay) {
+                var title = prompt('Event Title:');
+                if (title) {
+                    calendar.fullCalendar('renderEvent',
+                        {
+                            title: title,
+                            start: start,
+                            end: end,
+                            allDay: allDay
+                        },
+                        true // make the event "stick"
+                    );
+                }
+                calendar.fullCalendar('unselect');
+            },
+            droppable: true, // this allows things to be dropped onto the calendar !!!
+            drop: function(date, allDay) { // this function is called when something is dropped
+
+                // retrieve the dropped element's stored Event Object
+                var originalEventObject = $(this).data('eventObject');
+
+                // we need to copy it, so that multiple events don't have a reference to the same object
+                var copiedEventObject = $.extend({}, originalEventObject);
+
+                // assign it the date that was reported
+                copiedEventObject.start = date;
+                copiedEventObject.allDay = allDay;
+
+                // render the event on the calendar
+                // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+                $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+
+                // is the "remove after drop" checkbox checked?
+                if ($('#drop-remove').is(':checked')) {
+                    // if so, remove the element from the "Draggable Events" list
+                    $(this).remove();
+                }
+
+            },
+			editable: true,
+			// US Holidays
+			events: 'http://www.google.com/calendar/feeds/usa__en%40holiday.calendar.google.com/public/basic'
+
+			});
+        });
+
+        $('#external-events div.external-event').each(function() {
+
+            // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+            // it doesn't need to have a start or end
+            var eventObject = {
+                title: $.trim($(this).text()) // use the element's text as the event title
+            };
+
+            // store the Event Object in the DOM element so we can get to it later
+            $(this).data('eventObject', eventObject);
+
+            // make the event draggable using jQuery UI
+            $(this).draggable({
+                zIndex: 999999999,
+                revert: true,      // will cause the event to go back to its
+                revertDuration: 0  //  original position after the drag
+            });
+
+        });
+        </script>
+
+
+    {%block footer%}
+    {%endblock%}
+    </body>
+
+</html>

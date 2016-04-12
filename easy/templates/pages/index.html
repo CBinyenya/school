@@ -1,0 +1,30 @@
+{%extends "teachers_base.html"%}
+{%block content%}
+{{subjects|length}}
+{%for subject in subjects%}
+        <div class="row-fluid">
+            <!-- block -->
+            <div class="block">
+                <div class="navbar navbar-inner block-header">
+                    <div class="muted pull-left">{{subject.subject_name}}</div>
+                    <div class="pull-right">
+                        <a href="stats.html"><span class="badge badge-warning">View More</span></a>
+                    </div>
+                </div>
+                <div class="block-content collapse in">
+                    {%for test in results%}
+                    {%if test.subject == subject%}
+                    <div class="span3">
+                        <div class="chart" data-percent="73">{{subject}}</div>
+                        <div class="chart-bottom-heading">
+                            <span class="label label-info">{{test.subject}}</span>
+                        </div>
+                    </div>
+                    {%endif%}
+                {%endfor%}
+                </div>
+            </div>
+        </div>
+
+{%endfor%}
+{% endblock %}

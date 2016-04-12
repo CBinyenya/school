@@ -1,0 +1,28 @@
+{% load staticfiles%}
+
+<!-- Bootstrap Core CSS -->
+    <link rel = "stylesheet" href  = "{% static 'admin1/signup_css/style.css'%}"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+{% block content %}
+<body>
+    <form action="{% url 'details'%}" method="post">
+        {% csrf_token %}
+        <legend><span class="number">2</span>Your detailed info</legend>
+        {{formset}}
+        <input type="submit" class="button" value="Next">
+    </form>
+</body>
+{% endblock%}
+</html>
